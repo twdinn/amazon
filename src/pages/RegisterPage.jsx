@@ -18,7 +18,7 @@ const RegisterPage = () => {
       <Link to="/">
         <img
           className="login_logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png"
+          src="./images/Amazon_logo_login.png"
           alt=""
         />
       </Link>
@@ -27,7 +27,7 @@ const RegisterPage = () => {
         <h1>Sign-in</h1>
 
         <form>
-          <h5>E-mail</h5>
+          <h5>Email</h5>
           <input
             type="text"
             value={email}
