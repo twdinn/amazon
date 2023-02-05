@@ -1,18 +1,16 @@
 import { useState } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const navigate = useNavigate();
 
-  const signInHandler = () => {
-    navigate("/");
-  };
-
   const registerHandler = () => {
-    navigate("/register");
+    navigate("/");
   };
 
   return (
@@ -42,13 +40,19 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <h5>Confirm Password</h5>
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
 
           <button
             type="submit"
-            onClick={signInHandler}
+            onClick={registerHandler}
             className="login_signInButton"
           >
-            Sign In
+            Register
           </button>
         </form>
 
@@ -57,13 +61,12 @@ const LoginPage = () => {
           Sale. Please see our Privacy Notice, our Cookies Notice and our
           Interest-Based Ads Notice.
         </p>
-
-        <button onClick={registerHandler} className="login_registerButton">
-          Create your Amazon Account
-        </button>
+        <p>
+          Already have an account? <Link to="/login">Sign in</Link>
+        </p>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
