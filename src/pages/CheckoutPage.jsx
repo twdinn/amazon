@@ -1,9 +1,13 @@
 import Header from "../components/Header";
 import Subtotal from "../components/Subtotal";
-
-// import CheckoutProduct from "../components/CheckoutProduct";
+import CheckoutProduct from "../components/CheckoutProduct";
+import { useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
 function CheckoutPage() {
+  // const key = uuidv4();
+  const cart = useSelector((state) => state.cart);
+
   return (
     <>
       <Header />
@@ -11,7 +15,7 @@ function CheckoutPage() {
         <div className="checkout_left">
           <img
             className="checkout_ad"
-            src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
+            src="./images/Amazon-Prime-Early-Access-Sale.jpeg"
             alt=""
           />
 
@@ -20,13 +24,16 @@ function CheckoutPage() {
             <h3>Hello</h3>
             <h2 className="checkout_name">Your shopping Basket</h2>
 
-            {/* <CheckoutProduct
-            id={id}
-            name={item.name}
-            image={item.image}
-            price={item.price}
-            rating={item.rating}
-          /> */}
+            {cart.map((item) => (
+              <CheckoutProduct
+                key={uuidv4}
+                id={item.id}
+                name={item.name}
+                image={item.image}
+                price={item.price}
+                rating={item.rating}
+              />
+            ))}
           </div>
         </div>
 
