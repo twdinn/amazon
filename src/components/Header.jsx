@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const cart = useSelector((state) => state.cart);
+
   return (
     <div className="header">
       <Link to="/">
@@ -35,7 +38,9 @@ const Header = () => {
         <Link to="/checkout">
           <div className="header_optionBasket">
             <FaShoppingCart />
-            <span className="header_optionLineTwo header_basketCount"></span>
+            <span className="header_optionLineTwo header_basketCount">
+              {cart.length}
+            </span>
           </div>
         </Link>
       </div>

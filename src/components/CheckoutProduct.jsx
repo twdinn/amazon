@@ -1,6 +1,8 @@
 import { FaStar } from "react-icons/fa";
+import { v4 as uuidv4 } from "uuid";
 
 function CheckoutProduct({ id, image, name, price, rating }) {
+  const key = uuidv4();
   return (
     <div className="checkoutProduct">
       <img className="checkoutProduct_image" src={image} alt={name} />
@@ -13,7 +15,7 @@ function CheckoutProduct({ id, image, name, price, rating }) {
           {Array(rating)
             .fill()
             .map((_, i) => (
-              <p>
+              <p key={key}>
                 <FaStar />
               </p>
             ))}
