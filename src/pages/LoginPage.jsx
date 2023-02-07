@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { LOCAL_STORAGE_KEY } from "../constants/userConstants";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -7,8 +8,25 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const signInHandler = () => {
-    navigate("/");
+  const loginUserHandler = (e) => {
+    e.preventDefault();
+    if (localStorage.getItem(LOCAL_STORAGE_KEY)) {
+      const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+      let foundUser = false;
+      for (const user of users) {
+        if (email === user.email && password === user.password) {
+          foundUser = true;
+          navigate("/");
+          break;
+        }
+      }
+      if (!foundUser) {
+        alert("Email or password not correct");
+        throw new Error("Email or password not correct");
+      }
+    } else {
+      throw new Error("Account Not Found");
+    }
   };
 
   const registerHandler = () => {
@@ -28,10 +46,10 @@ const LoginPage = () => {
       <div className="login_container">
         <h1>Sign-in</h1>
 
-        <form>
+        <form onSubmit={loginUserHandler}>
           <h5>Email</h5>
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -43,11 +61,7 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button
-            type="submit"
-            onClick={signInHandler}
-            className="login_signInButton"
-          >
+          <button type="submit" className="login_signInButton">
             Sign In
           </button>
         </form>

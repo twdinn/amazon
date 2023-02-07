@@ -1,8 +1,15 @@
 import { FaStar } from "react-icons/fa";
-import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+
+import { removeItemFromCart } from "../actions/cartActions";
 
 function CheckoutProduct({ id, image, name, price, rating }) {
-  const key = uuidv4();
+  const dispatch = useDispatch();
+
+  const removeItemHandler = (itemId) => {
+    dispatch(removeItemFromCart({ id: itemId }));
+  };
+
   return (
     <div className="checkoutProduct">
       <img className="checkoutProduct_image" src={image} alt={name} />
@@ -15,12 +22,14 @@ function CheckoutProduct({ id, image, name, price, rating }) {
           {Array(rating)
             .fill()
             .map((_, i) => (
-              <p key={key}>
+              <p key={`${id}-${i}`}>
                 <FaStar />
               </p>
             ))}
         </div>
-        <button>Remove from Basket</button>
+        <button onClick={() => removeItemHandler(id)}>
+          Remove from Basket
+        </button>
       </div>
     </div>
   );
