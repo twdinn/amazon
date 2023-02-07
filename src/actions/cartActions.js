@@ -1,4 +1,7 @@
-import CART_ADD_ITEM from "../constants/cartConstants";
+import {
+  CART_ADD_ITEM,
+  REMOVE_ITEM_FROM_CART,
+} from "../constants/cartConstants";
 
 export const addToCart = (item) => ({
   type: CART_ADD_ITEM,
@@ -10,3 +13,7 @@ export const addToCart = (item) => ({
     rating: item.rating,
   },
 });
+
+export function removeItemFromCart(item) {
+  return { type: REMOVE_ITEM_FROM_CART, payload: item };
+}

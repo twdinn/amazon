@@ -1,15 +1,18 @@
-// import CheckoutProduct from "./CheckoutProduct";
+import CheckoutProduct from "../components/CheckoutProduct";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 // import CurrencyFormat from "react-currency-format";
 
 function PaymentPage() {
+  const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
   const handleSubmit = () => {};
   return (
     <div className="payment">
       <div className="payment_container">
         <h1>
-          Checkout (<Link to="/checkout"> items</Link>)
+          Checkout (<Link to="/checkout"> {cart.length} items</Link>)
         </h1>
 
         {/* Payment section - delivery address */}
@@ -18,9 +21,11 @@ function PaymentPage() {
             <h3>Delivery Address</h3>
           </div>
           <div className="payment_address">
-            {/* <p>{user?.email}</p> */}
-            <p>123 React Lane</p>
-            <p>Los Angeles, CA</p>
+            <p>{user?.email}</p>
+            <p>{user.street}</p>
+            <p>
+              {user.city}, {user.prov}
+            </p>
           </div>
         </div>
 
@@ -29,9 +34,10 @@ function PaymentPage() {
           <div className="payment_title">
             <h3>Review items and delivery</h3>
           </div>
-          {/* <div className="payment__items">
-            {basket.map((item) => (
+          <div className="payment__items">
+            {cart.map((item) => (
               <CheckoutProduct
+                key={item.id}
                 id={item.id}
                 title={item.title}
                 image={item.image}
@@ -39,7 +45,7 @@ function PaymentPage() {
                 rating={item.rating}
               />
             ))}
-          </div> */}
+          </div>
         </div>
 
         {/* Payment section - Payment method */}
@@ -51,27 +57,15 @@ function PaymentPage() {
             {/* Stripe magic will go */}
 
             <form onSubmit={handleSubmit}>
-              {/* <CardElement onChange={handleChange} /> */}
-
               <div className="payment_priceContainer">
-                {/* <CurrencyFormat
-                    renderText={(value) => <h3>Order Total: {value}</h3>}
-            
-                  decimalScale={2}
-                    value={getBasketTotal(basket)}
-                  displayType={"text"}
-                  thousandSeparator={true}
-                  prefix={"$"}
-                /> */}
-                {/* <button disabled={processing || disabled || succeeded}>
-                  <span>{processing ? <p>Processing</p> : "Buy Now"}</span> */}
+                <h3>
+                  Order Total: $
+                  {cart.reduce((amount, item) => item.price + amount, 0)}
+                </h3>
                 <button>
                   <span>Buy Now</span>
                 </button>
               </div>
-
-              {/* Errors */}
-              {/* {error && <div>{error}</div>} */}
             </form>
           </div>
         </div>

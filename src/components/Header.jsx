@@ -3,6 +3,7 @@ import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 const Header = () => {
+  const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
 
   return (
@@ -16,12 +17,14 @@ const Header = () => {
         <FaSearch className="header_searchIcon" />
       </div>
       <div className="header_nav">
-        <Link to="/login">
+        <Link to={"/login"}>
           <div className="header_option">
-            {/* <span className="header__optionLineOne">
-              Hello {!user ? "Guest" : user.email}
-            </span> */}
-            <span className="header_optionLineTwo">{"Sign In"}</span>
+            <span className="header__optionLineOne">
+              Hello {user && user.name ? user.name : "Guest"}
+            </span>
+            <span className="header_optionLineTwo">
+              {user ? "Sign Out" : "Sign In"}
+            </span>
           </div>
         </Link>
         <Link to="/orders">
