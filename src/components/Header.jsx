@@ -11,7 +11,11 @@ const Header = () => {
     <div className="header">
       {/* Link to the homepage */}
       <Link to="/">
-        <img className="header_logo" src="/images/Amazon_logo.png" alt="logo" />
+        <img
+          className="header_logo"
+          src="./images/Amazon_logo.png"
+          alt="logo"
+        />
       </Link>
 
       {/* Search bar */}
@@ -23,7 +27,7 @@ const Header = () => {
       {/* Navigation options */}
       <div className="header_nav">
         {/* Link to the login page */}
-        <Link to={"/login"}>
+        <Link to={"/login"} className="header_links">
           <div className="header_option">
             <span className="header_optionLineOne">
               {/* Show either the user's name or "Guest "  */}
@@ -38,7 +42,7 @@ const Header = () => {
         </Link>
 
         {/* Link to the orders page */}
-        <Link to="/orders">
+        <Link to="/orders" className="header_links">
           <div className="header_option">
             <span className="header_optionLineOne">Returns</span>
             <span className="header_optionLineTwo">& Orders</span>
@@ -52,7 +56,7 @@ const Header = () => {
         </div>
 
         {/* Link to the checkout page */}
-        <Link to="/checkout">
+        <Link to="/checkout" className="header_links">
           <div className="header_optionCart">
             <FaShoppingCart />
 

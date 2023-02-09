@@ -53,6 +53,10 @@ body {
   color: white;
 }
 
+.header_links {
+  text-decoration: none;
+}
+
 .header_optionLineOne {
   font-size: 0.63rem;
 }

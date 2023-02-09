@@ -12,7 +12,7 @@ const HomePage = () => {
           {/* Logo */}
           <img
             className="home_image"
-            src="/images/Prime-Video-logo.jpeg"
+            src="./images/Prime-Video-logo.jpeg"
             alt="prime-logo"
           />
 
