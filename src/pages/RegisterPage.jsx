@@ -96,7 +96,7 @@ const RegisterPage = () => {
       </Link>
 
       <div className="login_container">
-        <h1>Sign-in</h1>
+        <h1>Sign Up</h1>
 
         {/* Form Inputs */}
         <form onSubmit={registerHandler}>
@@ -162,7 +162,7 @@ const RegisterPage = () => {
           Sale. Please see our Privacy Notice, our Cookies Notice and our
           Interest-Based Ads Notice.
         </p>
-        <p>
+        <p className="return-login">
           {/* Return to Login Form if already have an account */}
           Already have an account? <Link to="/login">Sign in</Link>
         </p>

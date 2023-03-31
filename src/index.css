@@ -360,6 +360,10 @@ body {
   border-color: darkgray;
 }
 
+.return-login > a:visited {
+  color: black;
+}
+
 @media only screen and (max-width: 350px) {
   .login_container {
     width: 14rem;
